@@ -4,6 +4,7 @@ const connection = require("./config/db");
 const userRouter = require("./routes/user.route");
 const Auth = require("./middlewares/auth.middleware");
 const JobListingRouter = require("./routes/jobListing.route");
+const CompanyRouter = require("./routes/company.route");
 const dotenv = require("dotenv").config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/job", Auth, JobListingRouter);
+app.use("/company", Auth, CompanyRouter);
 
 const PORT = process.env.PORT || 3000;
 

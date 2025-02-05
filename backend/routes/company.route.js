@@ -1,4 +1,6 @@
 const express = require("express");
+const Authorize = require("../middlewares/authorize.middleware");
+const UserModel = require("../models/user.model");
 
 const CompanyRouter = express.Router();
 

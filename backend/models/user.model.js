@@ -20,12 +20,6 @@ const userSchema = new mongoose.Schema(
       enum: ["employee", "employer"],
       default: "employee",
     },
-    CompanyName: {
-      type: String,
-      required: function () {
-        return this.role === "employer";
-      },
-    },
   },
   {
     versionKey: false,

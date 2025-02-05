@@ -2,6 +2,7 @@ const express = require("express");
 const JobListingModel = require("../models/joblisting.model");
 const Authorize = require("../middlewares/authorize.middleware");
 const UserModel = require("../models/user.model");
+const CompanyModel = require("../models/company.model");
 
 const JobListingRouter = express.Router();
 
@@ -10,6 +11,7 @@ JobListingRouter.post("/jobListed", Authorize("employer"), async (req, res) => {
     const userId = req.user._id;
     const { CompanyName, Location, Salary, JobType, JobTitle } = req.body;
     const user = await UserModel.findOne({ _id: userId });
+    const company = await CompanyModel.findOne({ createdBy: userId });
     if (!user) {
       res.status(401).json({ message: "User not Found" });
     }
