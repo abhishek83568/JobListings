@@ -5,15 +5,6 @@ const UserModel = require("../models/user.model");
 
 const jobSeekerRouter = express.Router();
 
-jobSeekerRouter.get(
-  "/get-recommendation",
-  Authorize("employee"),
-  async (req, res) => {
-    try {
-    } catch (error) {}
-  }
-);
-
 jobSeekerRouter.post(
   "/create-profile",
   Authorize("employee"),
