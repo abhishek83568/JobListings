@@ -7,19 +7,19 @@ const JobListingSchema = new mongoose.Schema(
       ref: "Company",
       required: true,
     },
-    Location: {
+    location: {
       type: String,
       required: true,
     },
-    Salary: {
+    salary: {
       type: Number,
       required: true,
     },
-    JobType: {
+    jobType: {
       type: String,
       required: true,
     },
-    JobTitle: {
+    jobTitle: {
       type: String,
       required: true,
     },

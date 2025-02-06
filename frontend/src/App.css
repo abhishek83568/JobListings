@@ -2,3 +2,13 @@
   margin: 0;
   padding: 0;
 }
+
+.company-container {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 1px solid;
+}

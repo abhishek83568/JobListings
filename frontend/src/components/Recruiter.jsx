@@ -36,7 +36,7 @@ const Recruiter = () => {
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (data.ok) {
+      if (data) {
         setCompanyDetails({
           name: "",
           location: "",

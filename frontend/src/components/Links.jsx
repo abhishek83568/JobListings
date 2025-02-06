@@ -5,6 +5,8 @@ import LoginPage from "./LoginPage";
 import Recruiter from "./Recruiter";
 import JobSeeker from "./JobSeeker";
 import CompanyListing from "./CompanyListing";
+import JobListing from "./JobListing";
+import Jobs from "./Jobs";
 
 const Links = () => {
   return (
@@ -15,6 +17,8 @@ const Links = () => {
         <Route path="/employer" element={<Recruiter />} />
         <Route path="/employee" element={<JobSeeker />} />
         <Route path="/companyListing" element={<CompanyListing />} />
+        <Route path="/jobListing/:id" element={<JobListing />} />
+        <Route path="/allJobsCreated/:id" element={<Jobs />} />
       </Routes>
     </div>
   );
