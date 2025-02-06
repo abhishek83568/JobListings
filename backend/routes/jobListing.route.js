@@ -24,6 +24,36 @@ JobListingRouter.get(
   }
 );
 
+JobListingRouter.get(
+  "/get-companies",
+  Authorize("employee"),
+  async (req, res) => {
+    try {
+      const { location, jobTitle } = req.query;
+      let query = {};
+
+      if (location) {
+        query.location = { $regex: location, $options: "i" };
+      }
+      if (jobTitle) {
+        query.jobTitle = { $regex: jobTitle, $options: "i" };
+      }
+
+      const result = await JobListingModel.find(query);
+
+      res.status(200).json({
+        message: "Company retrieved successfully",
+        result,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "An error occurred while retrieving companies",
+        error: error.message,
+      });
+    }
+  }
+);
+
 JobListingRouter.post(
   "/jobListed/:id",
   Authorize("employer"),

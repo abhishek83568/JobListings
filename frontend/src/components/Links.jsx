@@ -7,6 +7,7 @@ import JobSeeker from "./JobSeeker";
 import CompanyListing from "./CompanyListing";
 import JobListing from "./JobListing";
 import Jobs from "./Jobs";
+import SingleCompany from "./SingleCompany";
 
 const Links = () => {
   return (
@@ -19,6 +20,7 @@ const Links = () => {
         <Route path="/companyListing" element={<CompanyListing />} />
         <Route path="/jobListing/:id" element={<JobListing />} />
         <Route path="/allJobsCreated/:id" element={<Jobs />} />
+        <Route path="/singleCompany/:id" element={<SingleCompany />} />
       </Routes>
     </div>
   );
