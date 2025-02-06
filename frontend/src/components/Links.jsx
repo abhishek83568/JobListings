@@ -4,6 +4,7 @@ import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 import Recruiter from "./Recruiter";
 import JobSeeker from "./JobSeeker";
+import CompanyListing from "./CompanyListing";
 
 const Links = () => {
   return (
@@ -13,6 +14,7 @@ const Links = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/employer" element={<Recruiter />} />
         <Route path="/employee" element={<JobSeeker />} />
+        <Route path="/companyListing" element={<CompanyListing />} />
       </Routes>
     </div>
   );

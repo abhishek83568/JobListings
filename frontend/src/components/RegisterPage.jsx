@@ -39,7 +39,6 @@ const RegisterPage = () => {
     console.log(data);
 
     if (data) {
-      setRegister(data.newUser);
       setRegister({
         userName: "",
         email: "",

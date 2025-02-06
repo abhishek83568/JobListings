@@ -1,6 +1,7 @@
 const express = require("express");
 const Authorize = require("../middlewares/authorize.middleware");
 const UserModel = require("../models/user.model");
+const CompanyModel = require("../models/company.model");
 
 const CompanyRouter = express.Router();
 
@@ -16,7 +17,7 @@ CompanyRouter.post(
         res.status(401).json({ message: "User not Found" });
       }
 
-      const company = new JobListingModel({
+      const company = new CompanyModel({
         name,
         location,
         about,
@@ -24,7 +25,9 @@ CompanyRouter.post(
       });
 
       await company.save();
-      res.status(201).json({ message: "Job Listed successfully", company });
+      res
+        .status(201)
+        .json({ message: "Company details created successfully", company });
     } catch (error) {
       res.status(404).send(`Error while registering ${error}`);
     }

@@ -8,21 +8,24 @@ const JobListingRouter = express.Router();
 
 JobListingRouter.post("/jobListed", Authorize("employer"), async (req, res) => {
   try {
-    const userId = req.user._id;
-    const { CompanyName, Location, Salary, JobType, JobTitle } = req.body;
-    const user = await UserModel.findOne({ _id: userId });
-    const company = await CompanyModel.findOne({ createdBy: userId });
+    const userid = req.user._id;
+    const { companyId, Location, Salary, JobType, JobTitle, userId } = req.body;
+    const user = await UserModel.findOne({ _id: userid });
+    const company = await CompanyModel.findOne({ createdBy: userid });
+    console.log(user);
+    console.log(company);
+
     if (!user) {
       res.status(401).json({ message: "User not Found" });
     }
 
     const job = new JobListingModel({
-      CompanyName,
+      companyId: company._id,
       Location,
       Salary,
       JobTitle,
       JobType,
-      userId: userId,
+      userId: userid,
     });
 
     await job.save();
