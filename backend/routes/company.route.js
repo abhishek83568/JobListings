@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const CompanyModel = require("../models/company.model");
-const UserModel = require("../models/user.model");
+const CompanyModel = require("../Model/company.model");
+const UserModel = require("../Model/user.model");
 const Authorize = require("../middlewares/authorize.middleware");
 
 const CompanyRouter = express.Router();

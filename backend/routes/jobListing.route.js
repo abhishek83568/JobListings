@@ -1,8 +1,8 @@
 const express = require("express");
-const JobListingModel = require("../models/joblisting.model");
+const JobListingModel = require("../Model/joblisting.model");
 const Authorize = require("../middlewares/authorize.middleware");
-const UserModel = require("../models/user.model");
-const CompanyModel = require("../models/company.model");
+const UserModel = require("../Model/user.model");
+const CompanyModel = require("../Model/company.model");
 
 const JobListingRouter = express.Router();
 
