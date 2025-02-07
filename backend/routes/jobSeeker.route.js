@@ -2,6 +2,8 @@ const express = require("express");
 const Authorize = require("../middlewares/authorize.middleware");
 const JobSeekerModel = require("../Model/jobseeker.model");
 const UserModel = require("../Model/user.model");
+const JobListingModel = require("../Model/joblisting.model");
+const CompanyModel = require("../Model/company.model");
 
 const jobSeekerRouter = express.Router();
 
@@ -32,6 +34,55 @@ jobSeekerRouter.post(
         .json({ message: "Job profile created successfully", jobProfile });
     } catch (error) {
       res.status(404).send(`Error while creating jobProfile ${error}`);
+    }
+  }
+);
+
+jobSeekerRouter.get(
+  "/get-recommendation",
+  Authorize("employee"),
+  async (req, res) => {
+    try {
+      const userId = req.user._id;
+
+      // 1️⃣ Find the JobSeeker's profile
+      const jobSeeker = await JobSeekerModel.findOne({ userId });
+
+      if (!jobSeeker) {
+        return res
+          .status(404)
+          .json({ message: "Job Seeker profile not found" });
+      }
+
+      // 2️⃣ Find job listings with the same job title
+      const matchingJobs = await JobListingModel.find({
+        jobTitle: jobSeeker.jobTitle,
+      });
+
+      if (matchingJobs.length === 0) {
+        return res
+          .status(404)
+          .json({ message: "No job recommendations found" });
+      }
+
+      // 3️⃣ Extract unique company IDs from matching job listings
+      const companyIds = [...new Set(matchingJobs.map((job) => job.companyId))];
+
+      // 4️⃣ Fetch company details
+      const recommendedCompanies = await CompanyModel.find({
+        _id: { $in: companyIds },
+      });
+
+      // 5️⃣ Return the recommended companies
+      res.status(200).json({
+        message: "Recommended companies retrieved successfully",
+        recommendedCompanies,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "An error occurred while retrieving recommendations",
+        error: error.message,
+      });
     }
   }
 );
