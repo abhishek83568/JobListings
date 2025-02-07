@@ -45,7 +45,6 @@ jobSeekerRouter.get(
     try {
       const userId = req.user._id;
 
-      // 1️⃣ Find the JobSeeker's profile
       const jobSeeker = await JobSeekerModel.findOne({ userId });
 
       if (!jobSeeker) {
@@ -54,7 +53,6 @@ jobSeekerRouter.get(
           .json({ message: "Job Seeker profile not found" });
       }
 
-      // 2️⃣ Find job listings with the same job title
       const matchingJobs = await JobListingModel.find({
         jobTitle: jobSeeker.jobTitle,
       });
@@ -65,15 +63,12 @@ jobSeekerRouter.get(
           .json({ message: "No job recommendations found" });
       }
 
-      // 3️⃣ Extract unique company IDs from matching job listings
       const companyIds = [...new Set(matchingJobs.map((job) => job.companyId))];
 
-      // 4️⃣ Fetch company details
       const recommendedCompanies = await CompanyModel.find({
         _id: { $in: companyIds },
       });
 
-      // 5️⃣ Return the recommended companies
       res.status(200).json({
         message: "Recommended companies retrieved successfully",
         recommendedCompanies,
