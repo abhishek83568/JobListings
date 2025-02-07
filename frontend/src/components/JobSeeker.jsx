@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import "../App.css";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const JobListing = () => {
+const JobSeeker = () => {
   const [jobProfile, setJobProfile] = useState({
     education: "",
     expectedSalary: "",
@@ -44,7 +45,6 @@ const JobListing = () => {
 
       const data = await res.json();
       if (data) {
-        console.log(data);
         setJobProfile({
           education: "",
           expectedSalary: "",
@@ -62,7 +62,7 @@ const JobListing = () => {
     setSearchQuery(e.target.value);
 
     if (e.target.value.length < 2) {
-      setResults([]); // Clear results if the input is too short
+      setResults([]);
       return;
     }
 
@@ -74,12 +74,11 @@ const JobListing = () => {
           method: "GET",
           headers: {
             "content-type": "application/json",
-            Authorization: `Bearers ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       const data = await res.json();
-      console.log(data);
       setResults(data.result || []);
     } catch (error) {
       console.error("Error fetching results:", error);
@@ -88,69 +87,51 @@ const JobListing = () => {
   };
 
   return (
-    <div>
-      <h1>Job Dhundho</h1>
+    <div className="jobSeeker-container">
+      <h1 className="title">Job Dekho</h1>
       {!showForm && (
-        <button onClick={() => setShowForm(true)}>Create Profile</button>
+        <button className="button" onClick={() => setShowForm(true)}>
+          Create Profile
+        </button>
       )}
 
-      {/* Search Functionality */}
-      <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-        <h2>Search Jobs</h2>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleInputChange}
-          placeholder="Search by job title"
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
-        />
-        {isLoading && <p>Loading...</p>}
-        {results.length > 0 && (
-          <div
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              padding: "10px",
-              marginTop: "10px",
-              maxHeight: "200px",
-              overflowY: "auto",
-            }}
-          >
-            {results.map((company) => (
-              <div
-                key={company._id}
-                style={{
-                  padding: "10px",
-                  borderBottom: "1px solid #ddd",
-                }}
-              >
-                <h4>{"Post : " + company.jobTitle}</h4>
-                <p>{"Location : " + company.location}</p>
-                <p>{"JobType : " + company.jobType}</p>
-                <p>{"Salary : " + company.salary}</p>
-                <button
-                  onClick={() =>
-                    navigate(`/singleCompany/${company.companyId}`)
-                  }
-                >
-                  Company Details
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      {!showForm && (
+        <div className="search-container">
+          <h2>Search Jobs</h2>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleInputChange}
+            placeholder="Search by job title"
+            className="search-input"
+          />
+          {isLoading && <p>Loading...</p>}
+          {results.length > 0 && (
+            <div className="search-results">
+              {results.map((company) => (
+                <div key={company._id} className="result-card">
+                  <h4>{"Post: " + company.jobTitle}</h4>
+                  <p>{"Location: " + company.location}</p>
+                  <p>{"JobType: " + company.jobType}</p>
+                  <p>{"Salary: " + company.salary}</p>
+                  <button
+                    className="button"
+                    onClick={() =>
+                      navigate(`/singleCompany/${company.companyId}`)
+                    }
+                  >
+                    Company Details
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
-      {/* Job Profile Form */}
       {showForm && (
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form className="jobSeeker-form" onSubmit={handleSubmit}>
+          <div className="form-group">
             <label htmlFor="education">Education:</label>
             <input
               type="text"
@@ -161,7 +142,7 @@ const JobListing = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="preferredJobType">Preferred Job Type:</label>
             <input
               type="text"
@@ -172,7 +153,7 @@ const JobListing = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="expectedSalary">Expected Salary:</label>
             <input
               type="number"
@@ -183,7 +164,7 @@ const JobListing = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="jobTitle">Job Title:</label>
             <input
               type="text"
@@ -194,16 +175,24 @@ const JobListing = () => {
               required
             />
           </div>
-          <button type="submit">Submit</button>
-          <button type="button" onClick={() => setShowForm(false)}>
-            Cancel
-          </button>
+          <div className="btn-group">
+            <button type="submit" className="button">
+              Submit
+            </button>
+            <button
+              type="button"
+              className="button cancel-btn"
+              onClick={() => setShowForm(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
 
-      <button>Recommended Jobs</button>
+      <button className="button">Recommended Jobs</button>
     </div>
   );
 };
 
-export default JobListing;
+export default JobSeeker;

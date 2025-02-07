@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import "../App.css";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../redux/action";
@@ -9,25 +10,26 @@ const SingleCompany = () => {
   const { data } = useSelector((state) => state.jobList);
   const token = JSON.parse(localStorage.getItem("token"));
   const url = `http://localhost:8878/company/get-Company/${id}`;
+
   useEffect(() => {
     if (token) {
       dispatch(fetchData(url, token));
     }
   }, [dispatch, id, token]);
-  console.log(data);
+
   if (!data || !data.company || !Array.isArray(data.company)) {
-    return <h2>Loading Company..</h2>;
+    return <h2 className="loading-text">Loading Company..</h2>;
   }
 
   return (
-    <div>
-      <h2>Company Details</h2>
-      <div>
+    <div className="company-container">
+      <h2 className="company-title">Company Details</h2>
+      <div className="company-list">
         {data.company.map((ele) => (
-          <div key={ele._id}>
-            <h1>{ele.name}</h1>
-            <p>{ele.about}</p>
-            <h4>{ele.location}</h4>
+          <div key={ele._id} className="company-card">
+            <h1 className="company-name">{ele.name}</h1>
+            <p className="company-about">{ele.about}</p>
+            <h4 className="company-location">{ele.location}</h4>
           </div>
         ))}
       </div>

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import "../App.css";
 
 const JobListing = () => {
   const { id } = useParams();
@@ -19,20 +20,17 @@ const JobListing = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const payload = {
-      location: jobListing.location,
-      salary: jobListing.salary,
-      jobTitle: jobListing.jobTitle,
-      jobType: jobListing.jobType,
-    };
+    const payload = { ...jobListing };
+
     try {
       const res = await fetch(`http://localhost:8878/job/jobListed/${id}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          Authorization: `Bearers ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(payload),
       });
@@ -50,14 +48,12 @@ const JobListing = () => {
       console.log(error);
     }
   };
-  console.log(id);
+
   return (
-    <div>
-      <div>
-        <h1>Create Job </h1>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="job-listing-container">
+      <h1 className="job-listing-title">Create Job</h1>
+      <form onSubmit={handleSubmit} className="job-listing-form">
+        <div className="form-group">
           <label htmlFor="location">Company Location</label>
           <input
             type="text"
@@ -68,7 +64,7 @@ const JobListing = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="salary">Salary</label>
           <input
             type="number"
@@ -79,8 +75,8 @@ const JobListing = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="jobType">JobType</label>
+        <div className="form-group">
+          <label htmlFor="jobType">Job Type</label>
           <input
             type="text"
             id="jobType"
@@ -90,8 +86,8 @@ const JobListing = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="jobTitle">JobTitle</label>
+        <div className="form-group">
+          <label htmlFor="jobTitle">Job Title</label>
           <input
             type="text"
             id="jobTitle"
@@ -101,7 +97,7 @@ const JobListing = () => {
             required
           />
         </div>
-        <input type="submit" value="Submit" id="submit" />
+        <input type="submit" value="Submit" className="submit-btn" />
       </form>
     </div>
   );

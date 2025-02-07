@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import "../App.css";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -7,7 +8,7 @@ const RegisterPage = () => {
     userName: "",
     email: "",
     password: "",
-    role: "employee",
+    role: "",
   });
 
   const handleChange = (e) => {
@@ -53,12 +54,14 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome to Job Dekho Website</h1>
-      <div>
+    <div className="register-container">
+      <h1>
+        Welcome to <span className="title">Job Dekho</span>{" "}
+      </h1>
+      <div className="input-container">
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="userName">Enter your Name:</label>
+          <div className="form-group">
+            <label htmlFor="userName">Name:</label>
             <input
               type="text"
               id="userName"
@@ -68,8 +71,8 @@ const RegisterPage = () => {
               required
             />
           </div>
-          <div className="form_input">
-            <label htmlFor="role">Enter your Role:</label>
+          <div className="form-group">
+            <label htmlFor="role">Role:</label>
             <select
               name="role"
               id="role"
@@ -83,8 +86,8 @@ const RegisterPage = () => {
             </select>
           </div>
 
-          <div className="form_input">
-            <label htmlFor="email">Enter your Email:</label>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
@@ -94,8 +97,8 @@ const RegisterPage = () => {
               required
             />
           </div>
-          <div className="form_input">
-            <label htmlFor="password">Enter your password:</label>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
             <input
               type="password"
               id="password"
@@ -105,8 +108,14 @@ const RegisterPage = () => {
               required
             />
           </div>
-
-          <input type="submit" value="Register" id="submit" />
+          <div className="btn-div">
+            <input
+              type="submit"
+              className="button"
+              value="Register"
+              id="submit"
+            />
+          </div>
           <p>
             Already Registered? <Link to="/login">Login Now</Link>
           </p>

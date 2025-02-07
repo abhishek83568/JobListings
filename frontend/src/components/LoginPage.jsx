@@ -1,3 +1,4 @@
+import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -67,12 +68,10 @@ const LandingPage = () => {
   //   };
 
   return (
-    <div>
-      <h1>Login </h1>
-
+    <div className="login-container">
       <div>
         <form onSubmit={handleSubmit}>
-          <div className="form_input">
+          <div className="form-group">
             <label htmlFor="email">Enter your Email:</label>
             <input
               type="email"
@@ -82,7 +81,7 @@ const LandingPage = () => {
               value={login.email}
             />
           </div>
-          <div className="form_input">
+          <div className="form-group">
             <label htmlFor="password">Enter your password:</label>
             <input
               type="password"
@@ -92,8 +91,9 @@ const LandingPage = () => {
               value={login.password}
             />
           </div>
-
-          <input type="submit" value="Login" id="submit" />
+          <div className="btn-div">
+            <input type="submit" className="button" value="Login" id="submit" />
+          </div>
           <p>
             User not registered ? <a href="/">Register Now</a>
           </p>

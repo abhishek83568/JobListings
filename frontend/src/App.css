@@ -1,14 +1,533 @@
-* {
+body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+/* register page styles */
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-container .title {
+  color: rgb(239, 130, 130);
+}
+
+.register-container input:last-child {
+  border: none;
+  border-bottom: 1px solid rgb(239, 130, 130);
+  outline: none;
+}
+
+.input-container {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  margin-right: 10px;
+}
+
+.form-group select {
+  width: 10rem;
+  padding: 2px;
+  background-color: rgba(239, 130, 130, 0.459);
+  border: none;
+  border-radius: 3px;
+}
+.form-group select option {
+  font-size: 12px;
+  background-color: rgb(239, 130, 130);
+}
+.form-group select option:before {
+  content: ">";
+  font-size: 20px;
+  display: none;
+  padding-right: 10px;
+  padding-left: 5px;
+  color: #fff;
+}
+
+.form-group select option:hover:before {
+  display: inline;
+}
+
+.register-container .btn-div {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-container .button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgba(239, 130, 130, 0.459);
+  box-shadow: none;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.register-container a {
+  text-decoration: none;
+  color: rgb(239, 130, 130);
+}
+
+/* Login Page */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container .btn-div {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.login-container .button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(239, 130, 130, 0.459);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.login-container input {
+  border: none;
+  border-bottom: 1px solid rgb(239, 130, 130);
+  outline: none;
+}
+
+.login-container a {
+  text-decoration: none;
+  color: rgb(239, 130, 130);
+}
+
+/* JobSeeker styles */
+
+.jobSeeker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.jobSeeker-container .title {
+  color: rgb(239, 130, 130);
+}
+
+.jobSeeker-form {
+  width: 400px;
+  background: #fff;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.jobSeeker-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.jobSeeker-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: rgb(239, 130, 130);
+}
+
+.jobSeeker-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgb(239, 130, 130);
+  border-radius: 3px;
+}
+
+.search-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid rgb(239, 130, 130);
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.search-results {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.result-card {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: rgba(239, 130, 130, 0.729);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cancel-btn {
+  background-color: gray;
+}
+
+.button:hover {
+  background-color: rgb(239, 130, 130);
+}
+
+/* Recruiter page style */
+
+.recruiter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.recruiter-container .title {
+  color: rgb(239, 130, 130);
+}
+
+.recruiter-form {
+  width: 400px;
+  background: #fff;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recruiter-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.recruiter-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: rgb(239, 130, 130);
+}
+
+.recruiter-form input,
+.recruiter-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgb(239, 130, 130);
+  border-radius: 3px;
+}
+
+.recruiter-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: rgba(239, 130, 130, 0.729);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cancel-btn {
+  background-color: gray;
+}
+
+.button:hover {
+  background-color: rgb(239, 130, 130);
+}
+
+/* SingleCompany styles */
 .company-container {
   display: flex;
-  width: 200px;
-  height: 200px;
-  margin: 5px;
   flex-direction: column;
-  flex-wrap: wrap;
-  border: 1px solid;
+  align-items: center;
+  padding: 20px;
+}
+
+.company-title {
+  color: rgb(239, 130, 130);
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.company-list {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.company-card {
+  background-color: rgba(239, 130, 130, 0.1);
+  border: 2px solid rgb(239, 130, 130);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(239, 130, 130);
+}
+
+.company-about {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.company-location {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(100, 100, 100);
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 20px;
+  color: rgb(239, 130, 130);
+  margin-top: 50px;
+}
+
+/* Jobs styles */
+
+.jobs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.jobs-title {
+  color: rgb(239, 130, 130);
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.jobs-list {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.job-card {
+  background-color: rgba(0, 123, 255, 0.1);
+  border: 2px solid rgb(239, 130, 130);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(239, 130, 130);
+}
+
+.job-type,
+.job-salary,
+.job-location {
+  font-size: 16px;
+  margin-top: 5px;
+  font-weight: bold;
+  color: rgb(80, 80, 80);
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 20px;
+  color: rgb(239, 130, 130);
+  margin-top: 50px;
+}
+
+/* Company Div */
+
+.company-card {
+  background: white;
+  border: 2px solid rgb(239, 130, 130);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  text-align: center;
+}
+
+.company-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(239, 130, 130);
+}
+
+.company-about {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.company-location {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.company-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.create-btn {
+  background-color: rgb(239, 130, 130);
+  color: white;
+}
+
+.create-btn:hover {
+  background-color: #218838;
+}
+
+.see-jobs-btn {
+  background-color: rgb(239, 130, 130);
+  color: black;
+}
+
+.see-jobs-btn:hover {
+  background-color: #e0a800;
+}
+
+/* JobListing */
+
+.job-listing-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgb(239, 130, 130);
+  text-align: center;
+}
+
+.job-listing-title {
+  color: rgb(239, 130, 130);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.job-listing-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 80%;
+  max-width: 350px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.submit-btn {
+  width: 85%;
+  max-width: 350px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(239, 130, 130);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(220, 100, 100);
 }

@@ -1,3 +1,4 @@
+import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +32,7 @@ const Recruiter = () => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          Authorization: `Bearers ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(payload),
       });
@@ -48,18 +49,17 @@ const Recruiter = () => {
       console.log(error);
     }
   };
+
   return (
-    <div>
-      <div>
-        <h1>Create Your Company Profile</h1>
-      </div>
-      <div>
-        <button onClick={() => navigate("/companyListing")}>
-          See All Your Companies
-        </button>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="recruiter-container">
+      <h1 className="title">Create Your Company Profile</h1>
+
+      <button className="button" onClick={() => navigate("/companyListing")}>
+        See All Your Companies
+      </button>
+
+      <form className="recruiter-form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <label htmlFor="name">Company Name</label>
           <input
             type="text"
@@ -70,7 +70,8 @@ const Recruiter = () => {
             required
           />
         </div>
-        <div>
+
+        <div className="form-group">
           <label htmlFor="location">Company Location</label>
           <input
             type="text"
@@ -81,10 +82,10 @@ const Recruiter = () => {
             required
           />
         </div>
-        <div>
+
+        <div className="form-group">
           <label htmlFor="about">About Company</label>
-          <input
-            type="text"
+          <textarea
             id="about"
             name="about"
             value={companyDetails.about}
@@ -92,7 +93,19 @@ const Recruiter = () => {
             required
           />
         </div>
-        <input type="submit" value="Submit" id="submit" />
+
+        <div className="btn-group">
+          <button type="submit" className="button">
+            Submit
+          </button>
+          <button
+            type="button"
+            className="button cancel-btn"
+            onClick={() => navigate("/")}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
