@@ -28,13 +28,16 @@ const RegisterPage = () => {
       role: register.role,
     };
 
-    const res = await fetch("http://localhost:8878/user/register", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    const res = await fetch(
+      "https://joblistings-1.onrender.com/user/register",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
 
     const data = await res.json();
     console.log(data);

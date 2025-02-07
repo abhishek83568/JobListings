@@ -32,7 +32,7 @@ const JobSeeker = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:8878/jobSeeker/create-profile`,
+        `https://joblistings-1.onrender.com/jobSeeker/create-profile`,
         {
           method: "POST",
           headers: {
@@ -69,7 +69,7 @@ const JobSeeker = () => {
     setIsLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:8878/job/get-companies?jobTitle=${e.target.value}`,
+        `https://joblistings-1.onrender.com/job/get-companies?jobTitle=${e.target.value}`,
         {
           method: "GET",
           headers: {

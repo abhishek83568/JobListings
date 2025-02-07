@@ -21,7 +21,7 @@ const LandingPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await fetch("http://localhost:8878/user/login", {
+      const res = await fetch("https://joblistings-1.onrender.com/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const LandingPage = () => {
 
   //   const handlelogout = async () => {
   //     try {
-  //       const response = await fetch("http://localhost:8878/user/logout", {
+  //       const response = await fetch("https://joblistings-1.onrender.com/user/logout", {
   //         method: "GET",
   //         headers: {
   //           "content-type": "application/json",

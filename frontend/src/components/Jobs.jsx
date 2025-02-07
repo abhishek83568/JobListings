@@ -9,7 +9,7 @@ const Jobs = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.jobList);
   const token = JSON.parse(localStorage.getItem("token"));
-  const url = `http://localhost:8878/job/get-AllJobs/${id}`;
+  const url = `https://joblistings-1.onrender.com/job/get-AllJobs/${id}`;
 
   useEffect(() => {
     if (token) {

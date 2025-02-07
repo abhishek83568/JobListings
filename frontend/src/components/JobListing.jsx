@@ -26,14 +26,17 @@ const JobListing = () => {
     const payload = { ...jobListing };
 
     try {
-      const res = await fetch(`http://localhost:8878/job/jobListed/${id}`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `https://joblistings-1.onrender.com/job/jobListed/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
       const data = await res.json();
       if (data) {
         setJobListing({

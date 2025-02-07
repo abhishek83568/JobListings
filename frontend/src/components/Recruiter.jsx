@@ -28,14 +28,17 @@ const Recruiter = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:8878/company/create-company", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        "https://joblistings-1.onrender.com/company/create-company",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
       const data = await res.json();
       if (data) {
         setCompanyDetails({

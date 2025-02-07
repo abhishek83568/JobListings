@@ -9,7 +9,7 @@ const SingleCompany = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.jobList);
   const token = JSON.parse(localStorage.getItem("token"));
-  const url = `http://localhost:8878/company/get-Company/${id}`;
+  const url = `https://joblistings-1.onrender.com/company/get-Company/${id}`;
 
   useEffect(() => {
     if (token) {

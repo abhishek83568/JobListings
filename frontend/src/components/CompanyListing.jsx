@@ -10,7 +10,7 @@ const CompanyListing = () => {
   const fetchCompanies = async () => {
     try {
       const res = await fetch(
-        "http://localhost:8878/company/get-allMyCompany",
+        "https://joblistings-1.onrender.com/company/get-allMyCompany",
         {
           method: "GET",
           headers: {
