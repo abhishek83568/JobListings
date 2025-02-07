@@ -204,6 +204,7 @@ body {
 
 .button {
   padding: 10px 20px;
+  margin: 5px;
   background-color: rgba(239, 130, 130, 0.729);
   color: #fff;
   border: none;

@@ -14,6 +14,7 @@ const JobSeeker = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
+  const [recommendation, setRecommendation] = useState([]);
 
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
@@ -86,9 +87,61 @@ const JobSeeker = () => {
     setIsLoading(false);
   };
 
+  const handlelogout = async () => {
+    try {
+      const response = await fetch(
+        "https://joblistings-1.onrender.com/user/logout",
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.removeItem("token");
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 500);
+      } else {
+        console.error("Logout failed", response.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleRecommendation = async (e) => {
+    try {
+      const res = await fetch(
+        `https://joblistings-1.onrender.com/jobSeeker/get-recommendation`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json();
+      setRecommendation(data.matchingJobs);
+    } catch (error) {
+      console.error("Error fetching results:", error);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <div className="jobSeeker-container">
       <h1 className="title">Job Dekho</h1>
+      <div>
+        <button className="button" onClick={handlelogout}>
+          Logout
+        </button>
+      </div>
       {!showForm && (
         <button className="button" onClick={() => setShowForm(true)}>
           Create Profile
@@ -189,8 +242,31 @@ const JobSeeker = () => {
           </div>
         </form>
       )}
-
-      <button className="button">Recommended Jobs</button>
+      <div>
+        <button className="button" onClick={handleRecommendation}>
+          Recommended Jobs
+        </button>
+        {recommendation.length > 0 && (
+          <div className="search-results">
+            {recommendation.map((company) => (
+              <div key={company._id} className="result-card">
+                <h4>{"Post: " + company.jobTitle}</h4>
+                <p>{"Location: " + company.location}</p>
+                <p>{"JobType: " + company.jobType}</p>
+                <p>{"Salary: " + company.salary}</p>
+                <button
+                  className="button"
+                  onClick={() =>
+                    navigate(`/singleCompany/${company.companyId}`)
+                  }
+                >
+                  Company Details
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

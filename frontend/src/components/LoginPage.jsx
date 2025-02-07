@@ -51,22 +51,6 @@ const LandingPage = () => {
     }
   };
 
-  //   const handlelogout = async () => {
-  //     try {
-  //       const response = await fetch("https://joblistings-1.onrender.com/user/logout", {
-  //         method: "GET",
-  //         headers: {
-  //           "content-type": "application/json",
-  //         },
-  //       });
-  //       const data = await response.json();
-  //       if (data.ok) {
-  //         console.log("logout successful");
-  //         navigate("/");
-  //       }
-  //     } catch (error) {}
-  //   };
-
   return (
     <div className="login-container">
       <div>

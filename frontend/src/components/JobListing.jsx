@@ -21,6 +21,33 @@ const JobListing = () => {
     }));
   };
 
+  const handlelogout = async () => {
+    try {
+      const response = await fetch(
+        "https://joblistings-1.onrender.com/user/logout",
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.removeItem("token");
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 500);
+      } else {
+        console.error("Logout failed", response.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const payload = { ...jobListing };
@@ -55,6 +82,11 @@ const JobListing = () => {
   return (
     <div className="job-listing-container">
       <h1 className="job-listing-title">Create Job</h1>
+      <div>
+        <button className="button" onClick={handlelogout}>
+          Logout
+        </button>
+      </div>
       <form onSubmit={handleSubmit} className="job-listing-form">
         <div className="form-group">
           <label htmlFor="location">Company Location</label>

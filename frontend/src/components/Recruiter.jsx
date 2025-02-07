@@ -53,6 +53,33 @@ const Recruiter = () => {
     }
   };
 
+  const handlelogout = async () => {
+    try {
+      const response = await fetch(
+        "https://joblistings-1.onrender.com/user/logout",
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.removeItem("token");
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 500);
+      } else {
+        console.error("Logout failed", response.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="recruiter-container">
       <h1 className="title">Create Your Company Profile</h1>
@@ -60,6 +87,11 @@ const Recruiter = () => {
       <button className="button" onClick={() => navigate("/companyListing")}>
         See All Your Companies
       </button>
+      <div>
+        <button className="button" onClick={handlelogout}>
+          Logout
+        </button>
+      </div>
 
       <form className="recruiter-form" onSubmit={handleSubmit}>
         <div className="form-group">
