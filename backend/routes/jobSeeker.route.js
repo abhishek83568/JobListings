@@ -77,6 +77,7 @@ jobSeekerRouter.get(
       res.status(200).json({
         message: "Recommended companies retrieved successfully",
         recommendedCompanies,
+        matchingJobs,
       });
     } catch (error) {
       res.status(500).json({
